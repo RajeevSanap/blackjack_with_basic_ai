@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Blackjack – Play against a probability-based AI dealer. Watch the AI reason through every decision in real time." />
+  <title>Blackjack – AI vs Human</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <!-- ═══════════════════════════ BACKGROUND ═══════════════════════════ -->
+  <div class="bg-felt" aria-hidden="true"></div>
+  <div class="bg-particles" id="particles" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════ HEADER ══════════════════════════════ -->
+  <header class="site-header">
+    <div class="logo">
+      <span class="logo-icon">♠</span>
+      <span class="logo-text">BlackJack <em>AI</em></span>
+    </div>
+    <div class="deck-counter">
+      <span class="deck-label">Cards Left</span>
+      <span class="deck-value" id="deckCount">52</span>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════ MAIN GAME ═══════════════════════════ -->
+  <main class="game-container" id="gameContainer">
+
+    <!-- DEALER ZONE -->
+    <section class="player-zone dealer-zone" aria-label="Dealer hand">
+      <div class="zone-header">
+        <span class="zone-icon">🤖</span>
+        <h2 class="zone-title">AI Dealer</h2>
+        <div class="score-badge" id="dealerScoreBadge">
+          <span class="score-label">Score</span>
+          <span class="score-value" id="dealerScore">0</span>
+        </div>
+      </div>
+      <div class="cards-row" id="dealerCards" role="list" aria-label="Dealer's cards"></div>
+    </section>
+
+    <!-- AI REASONING PANEL -->
+    <section class="ai-panel" id="aiPanel" aria-label="AI decision log">
+      <div class="ai-panel-header">
+        <span class="ai-icon">🧠</span>
+        <h3 class="ai-panel-title">AI Reasoning</h3>
+      </div>
+      <div class="ai-steps" id="aiSteps">
+        <p class="ai-placeholder">Start a game to see the AI think step-by-step.</p>
+      </div>
+    </section>
+
+    <!-- RESULT BANNER -->
+    <div class="result-banner" id="resultBanner" aria-live="polite" hidden>
+      <div class="result-inner">
+        <div class="result-emoji" id="resultEmoji">🃏</div>
+        <div class="result-text" id="resultText">Result</div>
+        <div class="result-sub" id="resultSub"></div>
+      </div>
+    </div>
+
+    <!-- PLAYER ZONE -->
+    <section class="player-zone human-zone" aria-label="Player hand">
+      <div class="zone-header">
+        <span class="zone-icon">🧑</span>
+        <h2 class="zone-title">You</h2>
+        <div class="score-badge" id="playerScoreBadge">
+          <span class="score-label">Score</span>
+          <span class="score-value" id="playerScore">0</span>
+        </div>
+      </div>
+      <div class="cards-row" id="playerCards" role="list" aria-label="Your cards"></div>
+    </section>
+
+    <!-- ACTIONS -->
+    <div class="actions-bar">
+      <button class="btn btn-hit" id="btnHit" disabled aria-label="Hit – draw a card">
+        <span class="btn-icon">+</span>
+        <span>Hit</span>
+      </button>
+      <button class="btn btn-stand" id="btnStand" disabled aria-label="Stand – end your turn">
+        <span class="btn-icon">✋</span>
+        <span>Stand</span>
+      </button>
+      <button class="btn btn-restart" id="btnRestart" aria-label="Restart the game">
+        <span class="btn-icon">↺</span>
+        <span>New Game</span>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- ═══════════════════════════ STATUS BAR ═══════════════════════════ -->
+  <footer class="status-bar" aria-live="polite">
+    <span id="statusMsg">Press <strong>New Game</strong> to start playing.</span>
+  </footer>
+
+  <script src="/static/game.js"></script>
+</body>
+</html>
